@@ -9,5 +9,5 @@ by Matt Hawkins, last updated 21/01/2018
 ```
 i2cdetect -y 1
 ```
-To see if the BME280 is detected.
+to see if the BME280 is detected. It should be on 76 or 77, you must adjuct the code to match.
 
