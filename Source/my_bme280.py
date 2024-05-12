@@ -1,34 +1,12 @@
-#!/usr/bin/python
-#--------------------------------------
-#    ___  ___  _ ____
-#   / _ \/ _ \(_) __/__  __ __
-#  / , _/ ___/ /\ \/ _ \/ // /
-# /_/|_/_/  /_/___/ .__/\_, /
-#                /_/   /___/
-#
-#           bme280.py
-#  Read data from a digital pressure sensor.
-#
-#  Official datasheet available from :
-#  https://www.bosch-sensortec.com/bst/products/all_products/bme280
-#
-# Author : Matt Hawkins
-# Date   : 21/01/2018
-#
-# https://www.raspberrypi-spy.co.uk/
-#
-#--------------------------------------
 import smbus
 import time
 from ctypes import c_short
-from ctypes import c_byte
-from ctypes import c_ubyte
-
-DEVICE = 0x76 # Default device I2C address
+import bme_properties
 
 
-bus = smbus.SMBus(1) # Rev 2 Pi, Pi 2 & Pi 3 uses bus 1
-                     # Rev 1 Pi uses bus 0
+DEVICE = 0x77 # Default device I2C address
+# After RPi 1, all other use bus 1 
+bus = smbus.SMBus(1) 
 
 def getShort(data, index):
   # return two bytes from data as a signed 16-bit value
@@ -50,14 +28,16 @@ def getUChar(data,index):
   result =  data[index] & 0xFF
   return result
 
+
 def readBME280ID(addr=DEVICE):
   # Chip ID Register Address
   REG_ID     = 0xD0
   (chip_id, chip_version) = bus.read_i2c_block_data(addr, REG_ID, 2)
   return (chip_id, chip_version)
 
+
 def readBME280All(addr=DEVICE):
-  # Register Addresses
+   # Register Addresses
   REG_DATA = 0xF7
   REG_CONTROL = 0xF4
   REG_CONFIG  = 0xF5
@@ -156,17 +136,4 @@ def readBME280All(addr=DEVICE):
 
   return temperature/100.0,pressure/100.0,humidity
 
-def main():
-
-  (chip_id, chip_version) = readBME280ID()
-  print ("Chip ID     :", chip_id)
-  print ("Version     :", chip_version)
-
-  temperature,pressure,humidity = readBME280All()
-
-  print ("Temperature : ", temperature, "C")
-  print ("Pressure : ", pressure, "hPa")
-  print ("Humidity : ", humidity, "%")
-
-if __name__=="__main__":
-   main()
+  
