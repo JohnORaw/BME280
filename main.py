@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 '''
 bme280 tools
 by: JOR 2024

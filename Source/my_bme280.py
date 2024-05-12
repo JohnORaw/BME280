@@ -1,7 +1,6 @@
 import smbus
 import time
 from ctypes import c_short
-import bme_properties
 
 # Default device I2C address is 76 or 77
 DEVICE = 0x77 
