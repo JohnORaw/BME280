@@ -9,7 +9,7 @@ by Matt Hawkins, last updated 21/01/2018
 ```
 i2cdetect -y 1
 ```
-to see if the BME280 is detected. It should be on 76 or 77, you must adjuct the code to match.
+to see if the BME280 is detected. It should be on 76 or 77, you must adjust the code to match.
 
 The image below shows a BME280 wired into a CM4 IO Board. It also shows DS18B20 based temperature sensors (dfifferent project!).
 
