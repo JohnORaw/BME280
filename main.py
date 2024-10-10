@@ -3,7 +3,7 @@
 '''
 bme280 tools
 by: JOR 2024
-Alpha version:  11OCT24
+Alpha version:  10OCT24
 Based on code by Matt Hawkins, 21/01/2018
 '''
 
